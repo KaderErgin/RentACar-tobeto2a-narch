@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class dnm1 : Migration
+    public partial class tst1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -138,7 +138,7 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     UserId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -264,6 +264,7 @@ namespace Persistence.Migrations
                     ModelId = table.Column<int>(type: "int", nullable: false),
                     CarState = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Kilometer = table.Column<int>(type: "int", nullable: false),
+                    ModelYear = table.Column<int>(type: "int", nullable: false),
                     Plate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ModelId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -304,7 +305,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IndividualCustomers",
+                name: "InvidualCustomers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -318,9 +319,9 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IndividualCustomers", x => x.Id);
+                    table.PrimaryKey("PK_InvidualCustomers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IndividualCustomers_Customers_CustomerId",
+                        name: "FK_InvidualCustomers_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
@@ -360,12 +361,12 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "DeletedDate", "Email", "PasswordHash", "PasswordSalt", "UpdatedDate" },
-                values: new object[] { new Guid("e48367de-2743-442b-a0f6-ed67310bfe1c"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 109, 201, 246, 218, 193, 43, 99, 147, 163, 42, 85, 241, 150, 209, 179, 70, 212, 180, 79, 163, 207, 175, 45, 31, 111, 185, 254, 213, 250, 254, 3, 92, 203, 175, 70, 53, 120, 10, 145, 91, 135, 190, 141, 146, 116, 252, 7, 88, 247, 132, 21, 109, 176, 71, 235, 113, 10, 60, 89, 157, 150, 148, 232, 143 }, new byte[] { 142, 212, 87, 15, 229, 46, 132, 70, 174, 223, 58, 54, 45, 3, 15, 29, 174, 24, 175, 14, 242, 144, 218, 45, 178, 15, 247, 150, 225, 94, 162, 215, 164, 252, 147, 227, 89, 92, 90, 89, 177, 5, 231, 6, 36, 38, 150, 52, 67, 232, 153, 89, 61, 250, 172, 60, 223, 254, 76, 86, 73, 76, 212, 182, 19, 9, 222, 58, 148, 37, 103, 59, 26, 16, 126, 135, 32, 143, 113, 202, 86, 242, 108, 68, 223, 216, 120, 67, 109, 60, 150, 163, 229, 209, 115, 164, 108, 40, 105, 206, 72, 237, 6, 254, 129, 114, 57, 229, 189, 239, 78, 46, 54, 255, 4, 91, 12, 42, 184, 144, 67, 132, 175, 253, 98, 239, 177, 2 }, null });
+                values: new object[] { new Guid("c7274e78-22dd-4357-86dc-461e048f24ff"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 202, 241, 10, 6, 134, 43, 25, 39, 191, 10, 161, 87, 47, 6, 83, 18, 254, 178, 78, 219, 11, 9, 86, 153, 94, 112, 103, 97, 233, 143, 84, 93, 182, 169, 23, 225, 15, 128, 9, 220, 194, 126, 188, 85, 123, 60, 207, 56, 202, 146, 132, 157, 236, 91, 151, 249, 242, 39, 95, 148, 138, 187, 106, 25 }, new byte[] { 222, 156, 178, 195, 242, 244, 226, 19, 164, 5, 78, 12, 73, 75, 6, 118, 60, 215, 1, 78, 145, 102, 33, 124, 252, 239, 114, 247, 78, 112, 165, 79, 192, 0, 70, 66, 180, 221, 93, 15, 245, 143, 0, 13, 168, 210, 65, 212, 223, 41, 58, 115, 165, 6, 164, 48, 72, 217, 202, 79, 219, 216, 128, 251, 199, 129, 161, 218, 229, 251, 171, 72, 99, 55, 26, 219, 234, 148, 155, 36, 108, 218, 123, 47, 11, 4, 170, 226, 224, 89, 34, 47, 36, 235, 229, 133, 217, 73, 83, 247, 183, 215, 168, 84, 63, 144, 62, 41, 11, 170, 28, 91, 7, 48, 175, 164, 76, 222, 170, 174, 1, 219, 54, 117, 198, 163, 250, 19 }, null });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "OperationClaimId", "UpdatedDate", "UserId" },
-                values: new object[] { new Guid("c227b45e-6aaf-4882-b0aa-45c24b557ddb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("e48367de-2743-442b-a0f6-ed67310bfe1c") });
+                values: new object[] { new Guid("98d140ce-d321-409b-813b-aead50ce4191"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("c7274e78-22dd-4357-86dc-461e048f24ff") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_ModelId1",
@@ -389,8 +390,8 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IndividualCustomers_CustomerId",
-                table: "IndividualCustomers",
+                name: "IX_InvidualCustomers_CustomerId",
+                table: "InvidualCustomers",
                 column: "CustomerId",
                 unique: true);
 
@@ -443,7 +444,7 @@ namespace Persistence.Migrations
                 name: "EmailAuthenticators");
 
             migrationBuilder.DropTable(
-                name: "IndividualCustomers");
+                name: "InvidualCustomers");
 
             migrationBuilder.DropTable(
                 name: "OtpAuthenticators");

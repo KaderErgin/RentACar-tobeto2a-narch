@@ -61,9 +61,9 @@ public class IndividualCustomerConfiguration : IEntityTypeConfiguration<Individu
         builder.HasKey(i => i.Id);
         builder.ToTable("InvidualCustomers");
 
-        // CorporateCustomer - Customer ilişkisini belirt
+        //InvidualCustomer - Customer ilişkisini belirt
         builder.HasOne(c => c.Customer)
                .WithOne(c => c.IndividualCustomers)
-               .HasForeignKey<IndividualCustomer>(c => c.CustomerId); // CorporateCustomer'ın bağımlı taraf olduğunu belirt
+               .HasForeignKey<IndividualCustomer>(c => c.CustomerId); // InvidualCustomer'ın bağımlı taraf olduğunu belirt
     }
 }

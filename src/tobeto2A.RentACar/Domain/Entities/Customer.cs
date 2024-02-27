@@ -19,7 +19,7 @@ public class Customer : Entity<Guid>
 
     public int UserId { get; set; }
     public User? User { get; set; } = null;
-    public int CustomerId { get; set; }//sonradan eklenen
+    public Guid CustomerId { get; set; }//sonradan eklenen
     public IndividualCustomer? IndividualCustomers { get; set; } = null;
     public CorporateCustomer? CorporateCustomers { get; set; } = null;
 
