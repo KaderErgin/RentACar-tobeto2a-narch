@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class tst1 : Migration
+    public partial class D_1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -98,15 +98,12 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BrandId = table.Column<int>(type: "int", nullable: false),
-                    FuelId = table.Column<int>(type: "int", nullable: false),
-                    TransmissionId = table.Column<int>(type: "int", nullable: false),
+                    BrandId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FuelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TransmissionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Year = table.Column<short>(type: "smallint", nullable: false),
                     DailyPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    BrandId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    FuelId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    TransmissionId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -115,20 +112,23 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Models", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Models_Brands_BrandId1",
-                        column: x => x.BrandId1,
+                        name: "FK_Models_Brands_BrandId",
+                        column: x => x.BrandId,
                         principalTable: "Brands",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Models_Fuels_FuelId1",
-                        column: x => x.FuelId1,
+                        name: "FK_Models_Fuels_FuelId",
+                        column: x => x.FuelId,
                         principalTable: "Fuels",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Models_Transmissions_TransmissionId1",
-                        column: x => x.TransmissionId1,
+                        name: "FK_Models_Transmissions_TransmissionId",
+                        column: x => x.TransmissionId,
                         principalTable: "Transmissions",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -261,7 +261,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ColorId = table.Column<int>(type: "int", nullable: false),
-                    ModelId = table.Column<int>(type: "int", nullable: false),
+                    ModelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CarState = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Kilometer = table.Column<int>(type: "int", nullable: false),
                     ModelYear = table.Column<int>(type: "int", nullable: false),
@@ -274,6 +274,12 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cars_Models_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "Models",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Cars_Models_ModelId1",
                         column: x => x.ModelId1,
@@ -361,12 +367,17 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "DeletedDate", "Email", "PasswordHash", "PasswordSalt", "UpdatedDate" },
-                values: new object[] { new Guid("c7274e78-22dd-4357-86dc-461e048f24ff"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 202, 241, 10, 6, 134, 43, 25, 39, 191, 10, 161, 87, 47, 6, 83, 18, 254, 178, 78, 219, 11, 9, 86, 153, 94, 112, 103, 97, 233, 143, 84, 93, 182, 169, 23, 225, 15, 128, 9, 220, 194, 126, 188, 85, 123, 60, 207, 56, 202, 146, 132, 157, 236, 91, 151, 249, 242, 39, 95, 148, 138, 187, 106, 25 }, new byte[] { 222, 156, 178, 195, 242, 244, 226, 19, 164, 5, 78, 12, 73, 75, 6, 118, 60, 215, 1, 78, 145, 102, 33, 124, 252, 239, 114, 247, 78, 112, 165, 79, 192, 0, 70, 66, 180, 221, 93, 15, 245, 143, 0, 13, 168, 210, 65, 212, 223, 41, 58, 115, 165, 6, 164, 48, 72, 217, 202, 79, 219, 216, 128, 251, 199, 129, 161, 218, 229, 251, 171, 72, 99, 55, 26, 219, 234, 148, 155, 36, 108, 218, 123, 47, 11, 4, 170, 226, 224, 89, 34, 47, 36, 235, 229, 133, 217, 73, 83, 247, 183, 215, 168, 84, 63, 144, 62, 41, 11, 170, 28, 91, 7, 48, 175, 164, 76, 222, 170, 174, 1, 219, 54, 117, 198, 163, 250, 19 }, null });
+                values: new object[] { new Guid("d84847ff-ccb1-49fa-918d-6366228a22cb"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 69, 156, 0, 77, 99, 102, 142, 72, 102, 77, 123, 113, 9, 186, 54, 144, 15, 209, 253, 197, 0, 44, 142, 114, 39, 186, 166, 102, 74, 155, 95, 188, 232, 196, 236, 143, 29, 242, 42, 26, 166, 29, 160, 19, 81, 217, 127, 163, 189, 11, 143, 83, 45, 49, 67, 77, 154, 172, 81, 116, 38, 193, 96, 167 }, new byte[] { 67, 136, 45, 140, 204, 12, 151, 63, 62, 49, 177, 89, 158, 255, 52, 8, 16, 217, 100, 196, 232, 120, 201, 8, 146, 141, 230, 227, 14, 212, 112, 196, 46, 176, 100, 38, 48, 38, 91, 42, 8, 247, 170, 84, 106, 14, 33, 33, 98, 52, 195, 72, 103, 81, 116, 158, 90, 15, 19, 170, 107, 63, 34, 192, 150, 103, 214, 200, 109, 76, 58, 78, 22, 165, 124, 51, 174, 100, 7, 220, 108, 11, 175, 154, 26, 147, 214, 252, 1, 242, 167, 238, 22, 101, 221, 121, 131, 100, 1, 251, 188, 89, 230, 50, 186, 114, 207, 55, 140, 47, 159, 185, 136, 125, 102, 106, 141, 9, 31, 215, 74, 156, 165, 185, 184, 248, 117, 235 }, null });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "OperationClaimId", "UpdatedDate", "UserId" },
-                values: new object[] { new Guid("98d140ce-d321-409b-813b-aead50ce4191"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("c7274e78-22dd-4357-86dc-461e048f24ff") });
+                values: new object[] { new Guid("11c40dbb-ffc6-4270-85f9-7dc58fce6028"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("d84847ff-ccb1-49fa-918d-6366228a22cb") });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cars_ModelId",
+                table: "Cars",
+                column: "ModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_ModelId1",
@@ -396,19 +407,19 @@ namespace Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_BrandId1",
+                name: "IX_Models_BrandId",
                 table: "Models",
-                column: "BrandId1");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_FuelId1",
+                name: "IX_Models_FuelId",
                 table: "Models",
-                column: "FuelId1");
+                column: "FuelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Models_TransmissionId1",
+                name: "IX_Models_TransmissionId",
                 table: "Models",
-                column: "TransmissionId1");
+                column: "TransmissionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OtpAuthenticators_UserId",

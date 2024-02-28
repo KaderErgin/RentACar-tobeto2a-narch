@@ -10,8 +10,8 @@ public class Car : Entity<Guid>
 {
     //Id, ColorId, ModelId, CarState, Kilometer, ModelYear, Plate
     public int ColorId { get; set; }
-    // public Guid ModelId { get; set; }//yeni eklenen Guid değer
-    public int ModelId { get; set; }
+    public Guid ModelId { get; set; }//yeni eklenen Guid değer
+   // public int ModelId { get; set; }//onceki yapı int 
     public string CarState { get; set; }
     public int Kilometer { get; set; }
     public int ModelYear { get; set; }
@@ -21,7 +21,7 @@ public class Car : Entity<Guid>
 
     }
 
-    public Car(int colorId, int modelId, string carState, int kilometer, int modelYear, string plate)//modelId guid döndü
+    public Car(int colorId, Guid modelId, string carState, int kilometer, int modelYear, string plate)//modelId guid döndü
     {
         ColorId = colorId;
         ModelId = modelId;

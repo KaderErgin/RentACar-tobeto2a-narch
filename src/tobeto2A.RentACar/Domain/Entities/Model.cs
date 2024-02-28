@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Domain.Entities;
 public class Model : Entity<Guid>
 {
-    public int BrandId { get; set; } //Guid yeni Guid özelliği 
-    public int FuelId { get; set; }//Guid yeni Guid özelliği 
-    public int TransmissionId { get; set; }//Guid yeni Guid özelliği 
+    public Guid BrandId { get; set; } //Guid yeni Guid özelliği 
+    public Guid FuelId { get; set; }//Guid yeni Guid özelliği 
+    public Guid TransmissionId { get; set; }//Guid yeni Guid özelliği 
     public string Name { get; set; }
     public short Year { get; set; }
     public decimal DailyPrice { get; set; }
@@ -19,9 +19,9 @@ public class Model : Entity<Guid>
 
 
     public Model(
-        int brandId,//Guid olarakd değişti
-        int fuelId,//Guid olarakd değişti
-        int transmissionId,//Guid olarakd değişti
+        Guid brandId,//Guid olarakd değişti
+        Guid fuelId,//Guid olarakd değişti
+        Guid transmissionId,//Guid olarakd değişti
         string name,
         short year,
         decimal dailyPrice
