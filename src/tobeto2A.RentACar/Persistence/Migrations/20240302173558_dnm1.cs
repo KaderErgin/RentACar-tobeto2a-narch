@@ -310,7 +310,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InvidualCustomers",
+                name: "IndividualCustomers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -324,9 +324,9 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvidualCustomers", x => x.Id);
+                    table.PrimaryKey("PK_IndividualCustomers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InvidualCustomers_Customers_CustomerId",
+                        name: "FK_IndividualCustomers_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
@@ -366,12 +366,12 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "DeletedDate", "Email", "PasswordHash", "PasswordSalt", "UpdatedDate" },
-                values: new object[] { new Guid("817c2e62-a6f3-4495-b9ad-28bc0ee5a767"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 150, 95, 57, 192, 82, 201, 73, 230, 83, 160, 24, 43, 43, 38, 232, 102, 23, 158, 213, 100, 92, 170, 132, 255, 98, 102, 90, 227, 244, 175, 29, 18, 46, 42, 212, 75, 101, 26, 6, 206, 128, 65, 95, 134, 251, 58, 223, 123, 72, 26, 101, 78, 249, 79, 115, 71, 2, 120, 169, 117, 116, 168, 118, 206 }, new byte[] { 194, 242, 19, 198, 28, 111, 244, 76, 7, 241, 13, 98, 58, 220, 229, 26, 31, 165, 113, 17, 131, 195, 64, 252, 68, 59, 146, 71, 195, 247, 204, 217, 232, 30, 123, 118, 117, 203, 118, 29, 123, 168, 10, 69, 64, 48, 109, 11, 204, 79, 245, 5, 48, 190, 163, 103, 151, 236, 154, 105, 217, 167, 94, 153, 32, 254, 233, 119, 236, 73, 234, 252, 25, 11, 21, 56, 33, 124, 232, 142, 33, 78, 22, 217, 29, 217, 171, 232, 192, 10, 203, 192, 47, 83, 25, 61, 165, 27, 91, 230, 117, 139, 56, 246, 215, 208, 185, 116, 53, 107, 133, 181, 71, 164, 151, 181, 240, 54, 126, 85, 251, 126, 33, 179, 49, 9, 194, 178 }, null });
+                values: new object[] { new Guid("a917d2fc-4ac0-4cb9-9165-63b9ee3725a6"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 228, 229, 248, 92, 66, 42, 162, 196, 167, 225, 149, 172, 138, 84, 6, 233, 162, 211, 81, 136, 232, 126, 255, 85, 207, 220, 154, 184, 154, 128, 120, 230, 251, 19, 125, 185, 119, 98, 168, 229, 69, 42, 169, 171, 252, 62, 143, 60, 138, 175, 40, 63, 192, 233, 73, 59, 208, 109, 189, 53, 111, 78, 26, 71 }, new byte[] { 129, 231, 18, 171, 78, 205, 178, 35, 151, 55, 145, 110, 153, 76, 116, 170, 232, 111, 132, 154, 24, 187, 165, 199, 82, 21, 229, 82, 241, 241, 21, 26, 141, 127, 225, 133, 62, 66, 188, 156, 96, 44, 58, 171, 46, 81, 160, 154, 154, 107, 106, 185, 126, 54, 251, 254, 181, 111, 76, 182, 208, 10, 213, 209, 117, 29, 74, 230, 183, 5, 52, 217, 122, 149, 38, 154, 139, 147, 192, 209, 222, 98, 190, 195, 149, 201, 217, 110, 236, 74, 225, 63, 210, 9, 197, 86, 193, 5, 19, 50, 31, 55, 216, 138, 192, 167, 98, 251, 48, 149, 211, 240, 172, 87, 155, 72, 66, 49, 212, 237, 63, 107, 170, 185, 175, 120, 178, 60 }, null });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "OperationClaimId", "UpdatedDate", "UserId" },
-                values: new object[] { new Guid("a4336811-8ca9-48eb-8230-bc37b916c1d6"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("817c2e62-a6f3-4495-b9ad-28bc0ee5a767") });
+                values: new object[] { new Guid("a17852c8-110e-4a57-9f06-f4c98e82eec2"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("a917d2fc-4ac0-4cb9-9165-63b9ee3725a6") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_ModelId",
@@ -400,8 +400,8 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvidualCustomers_CustomerId",
-                table: "InvidualCustomers",
+                name: "IX_IndividualCustomers_CustomerId",
+                table: "IndividualCustomers",
                 column: "CustomerId",
                 unique: true);
 
@@ -454,7 +454,7 @@ namespace Persistence.Migrations
                 name: "EmailAuthenticators");
 
             migrationBuilder.DropTable(
-                name: "InvidualCustomers");
+                name: "IndividualCustomers");
 
             migrationBuilder.DropTable(
                 name: "OtpAuthenticators");
