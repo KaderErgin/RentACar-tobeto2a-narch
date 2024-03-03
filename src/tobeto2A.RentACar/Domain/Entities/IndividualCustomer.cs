@@ -1,11 +1,4 @@
-﻿//using NArchitecture.Core.Persistence.Repositories;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-
+﻿
 using NArchitecture.Core.Persistence.Repositories;
 using System;
 
@@ -13,6 +6,13 @@ namespace Domain.Entities
 {
     public class IndividualCustomer : Entity<Guid>
     {
+        public IndividualCustomer(string firstName, string lastName, string nationalIdentity, Guid customerId)//Guid CustomerId//
+        {
+            FirstName = firstName;//
+            LastName = lastName;//
+            NationalIdentity = nationalIdentity;//
+            CustomerId = customerId;//
+        }//
         public IndividualCustomer()
         {
         }
