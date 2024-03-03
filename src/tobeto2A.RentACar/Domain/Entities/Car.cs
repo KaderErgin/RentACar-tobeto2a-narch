@@ -9,9 +9,8 @@ namespace Domain.Entities;
 public class Car : Entity<Guid>
 {
     //Id, ColorId, ModelId, CarState, Kilometer, ModelYear, Plate
-    public int ColorId { get; set; }
+    public int ColorId { get; set; }//duruma göre guid dönebilirsin 
     public Guid ModelId { get; set; }//yeni eklenen Guid değer
-   // public int ModelId { get; set; }//onceki yapı int 
     public string CarState { get; set; }
     public int Kilometer { get; set; }
     public int ModelYear { get; set; }

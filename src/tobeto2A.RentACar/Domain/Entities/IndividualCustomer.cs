@@ -1,30 +1,26 @@
-﻿using NArchitecture.Core.Persistence.Repositories;
+﻿//using NArchitecture.Core.Persistence.Repositories;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+
+
+using NArchitecture.Core.Persistence.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Entities;
-public class IndividualCustomer : Entity<Guid>
+namespace Domain.Entities
 {
-    public IndividualCustomer(string firstName, string lastName, string nationalIdentity, Guid customerId)//Guid CustomerId
+    public class IndividualCustomer : Entity<Guid>
     {
-        FirstName = firstName;
-        LastName = lastName;
-        NationalIdentity = nationalIdentity;
-        CustomerId = customerId;
+        public IndividualCustomer()
+        {
+        }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string NationalIdentity { get; set; }
+        public Guid CustomerId { get; set; }
+        public Customer? Customer { get; set; } = null;
     }
-    public IndividualCustomer()
-    {
-
-    }
-
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string NationalIdentity { get; set; }
-    //eski kod//public int CustomerId { get; set; }
-    public Guid CustomerId { get; set; } //yeni eklenne
-    public Customer? Customer { get; set; } = null;
-
 }

@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240302173558_dnm1")]
-    partial class dnm1
+    [Migration("20240303175110_test1")]
+    partial class test1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,9 +142,6 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
@@ -646,12 +643,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a917d2fc-4ac0-4cb9-9165-63b9ee3725a6"),
+                            Id = new Guid("671b38bf-cae9-444b-b645-10c9bfd97459"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 228, 229, 248, 92, 66, 42, 162, 196, 167, 225, 149, 172, 138, 84, 6, 233, 162, 211, 81, 136, 232, 126, 255, 85, 207, 220, 154, 184, 154, 128, 120, 230, 251, 19, 125, 185, 119, 98, 168, 229, 69, 42, 169, 171, 252, 62, 143, 60, 138, 175, 40, 63, 192, 233, 73, 59, 208, 109, 189, 53, 111, 78, 26, 71 },
-                            PasswordSalt = new byte[] { 129, 231, 18, 171, 78, 205, 178, 35, 151, 55, 145, 110, 153, 76, 116, 170, 232, 111, 132, 154, 24, 187, 165, 199, 82, 21, 229, 82, 241, 241, 21, 26, 141, 127, 225, 133, 62, 66, 188, 156, 96, 44, 58, 171, 46, 81, 160, 154, 154, 107, 106, 185, 126, 54, 251, 254, 181, 111, 76, 182, 208, 10, 213, 209, 117, 29, 74, 230, 183, 5, 52, 217, 122, 149, 38, 154, 139, 147, 192, 209, 222, 98, 190, 195, 149, 201, 217, 110, 236, 74, 225, 63, 210, 9, 197, 86, 193, 5, 19, 50, 31, 55, 216, 138, 192, 167, 98, 251, 48, 149, 211, 240, 172, 87, 155, 72, 66, 49, 212, 237, 63, 107, 170, 185, 175, 120, 178, 60 }
+                            PasswordHash = new byte[] { 63, 20, 20, 31, 123, 41, 130, 123, 62, 170, 95, 165, 232, 69, 165, 49, 134, 4, 170, 142, 30, 111, 174, 150, 53, 98, 186, 43, 36, 38, 118, 37, 11, 87, 169, 112, 246, 164, 228, 166, 150, 156, 97, 68, 153, 42, 57, 128, 131, 189, 230, 137, 196, 141, 26, 29, 56, 132, 73, 48, 18, 35, 179, 97 },
+                            PasswordSalt = new byte[] { 215, 158, 210, 0, 151, 204, 139, 205, 35, 190, 103, 72, 124, 252, 102, 172, 115, 226, 147, 99, 27, 219, 15, 124, 118, 22, 162, 99, 53, 209, 41, 152, 51, 211, 228, 227, 222, 88, 82, 60, 107, 95, 86, 48, 82, 20, 205, 160, 1, 173, 245, 170, 27, 148, 204, 22, 162, 55, 253, 153, 225, 84, 233, 241, 200, 218, 55, 34, 249, 43, 186, 245, 201, 221, 41, 247, 241, 234, 150, 196, 162, 130, 110, 94, 210, 114, 132, 129, 207, 195, 124, 82, 15, 101, 228, 207, 217, 162, 194, 245, 200, 231, 69, 94, 87, 106, 138, 214, 82, 192, 62, 93, 166, 155, 28, 57, 228, 253, 59, 137, 20, 247, 11, 48, 32, 70, 61, 144 }
                         });
                 });
 
@@ -693,10 +690,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a17852c8-110e-4a57-9f06-f4c98e82eec2"),
+                            Id = new Guid("8965c119-debc-49d8-8e68-27aaccb2ec50"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("a917d2fc-4ac0-4cb9-9165-63b9ee3725a6")
+                            UserId = new Guid("671b38bf-cae9-444b-b645-10c9bfd97459")
                         });
                 });
 
@@ -716,7 +713,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.CorporateCustomer", b =>
                 {
                     b.HasOne("Domain.Entities.Customer", "Customer")
-                        .WithOne("CorporateCustomers")
+                        .WithOne("CorporateCustomer")
                         .HasForeignKey("Domain.Entities.CorporateCustomer", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -747,7 +744,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.IndividualCustomer", b =>
                 {
                     b.HasOne("Domain.Entities.Customer", "Customer")
-                        .WithOne("IndividualCustomers")
+                        .WithOne("IndividualCustomer")
                         .HasForeignKey("Domain.Entities.IndividualCustomer", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -825,9 +822,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Customer", b =>
                 {
-                    b.Navigation("CorporateCustomers");
+                    b.Navigation("CorporateCustomer");
 
-                    b.Navigation("IndividualCustomers");
+                    b.Navigation("IndividualCustomer");
                 });
 
             modelBuilder.Entity("Domain.Entities.Model", b =>
