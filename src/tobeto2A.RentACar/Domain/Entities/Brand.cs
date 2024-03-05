@@ -10,7 +10,7 @@ public class Brand : Entity<Guid>
 {
     public string Name { get; set; }
     public string Logo { get; set; }
-
+    //public List<Model> Models { get; set; } // sonradan eklendi
 
 }
 
